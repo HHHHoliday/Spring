@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--添加 处理映射器-->
+    <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+    <!--添加 处理器适配器-->
+    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
+
+
+    <!--视图解析器:DispatcherServlet交一个（controller发给dispatcherServlet的）ModelAndView给视图解析器 （模板引擎：Thymeleof Freemarker）-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="InternalResourceViewResolver">
+        <!--前缀-->
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <!--后缀-->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!--BeanNameUrlHandlerMapping:bean  处理映射器找到bean 根据id映射出存放实际业务逻辑的controller类-->
+    <!--id对应URL:http://localhost:8080/springmvc_02_hellomvc_war_exploded/test-->
+    <bean id="/test" class="com.holidayX.controller.TestController"/>
+
+</beans>
